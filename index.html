@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO</title>
+    <style>
+      body {
+        background-color: black;
+        color: aliceblue;
+      }
+      .check {
+        text-decoration: line-through;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -14,17 +23,11 @@
     <main>
       <!--input de la tarea y boton para agregarla-->
       <div class="contenedor-agregar">
-        <input type="text" required />
-        <button class="agregar-tareas boton">➕</button>
+        <input class="input-text" type="text" />
+        <button class="boton-agregar boton">➕</button>
       </div>
       <!--contenedor de las tareas agregadas dinamicamente-->
-      <div class="contenedor-tareas">
-        <div class="tarea-check">
-          <input type="checkbox" />
-          <p>ejemplo de tarea</p>
-        </div>
-        <button class="Eliminar-tarea">✖️</button>
-      </div>
+      <div class="contenedor-tareas"></div>
       <!--funciones extras-->
       <div class="funciones">
         <p>0 tareas</p>
@@ -32,7 +35,7 @@
         <div class="acciones">
           <button class="todas boton">Todas</button>
           <button class="completas boton">Completas</button>
-          <button class="hechas boton">Hechas</button>
+          <button class="hechas boton">Activas</button>
         </div>
         <button class="Eliminar-todas boton">Eliminar todas</button>
       </div>
@@ -40,5 +43,6 @@
     <footer>
       <a href="">Github</a>
     </footer>
+    <script src="scripts.js"></script>
   </body>
 </html>
