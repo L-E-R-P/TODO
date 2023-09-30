@@ -1,6 +1,7 @@
 const $inputText = document.querySelector(".input-text");
 const $contenedorTareas = document.querySelector(".contenedor-tareas");
 const $numeroTareas = document.querySelector(".num-p");
+const $reloj = document.querySelector("header p");
 
 //crea un templete html y lo inserta en el contenedor de las tareas, el parametro contendido hace referencia el texto que se va insertar
 function agregarTarea(contenido, clase, checked, contexto) {
@@ -61,9 +62,13 @@ function tareaHecha(tarea) {
 function numeroTareas() {
   //ajustar la funcion para que no cuente los espacios vacios
   const tareasActivas = localStorage.getItem("activas").split(",");
-  const longitud = tareasActivas.length;
+  const arraySinElementosVacios = tareasActivas.filter(
+    (elemento) => elemento !== ""
+  );
+  let longitud = arraySinElementosVacios.length;
   $numeroTareas.innerText = `Tareas pendientes ${longitud}`;
 }
+//esta funcion la llamo cada vez que hago una accion ya sea para marcar eliminar o agregar
 function pintarTodas() {
   const tareasActivas = localStorage.getItem("activas");
   const tareasLista = localStorage.getItem("listas");
@@ -79,21 +84,26 @@ function pintarTodas() {
     }
   }
 }
+
 //delegacion de eventos para asignar la logica
 document.addEventListener("click", (e) => {
   // acorto el evento
   const evento = e.target.classList;
   //para asignar las funciones uso el evento contains para saber si estoy apuntando correctamente
-  if (evento.contains("boton-agregar"))
+  if (evento.contains("boton-agregar")) {
     agregarTarea($inputText.value, "", "", true);
+    numeroTareas();
+  }
 
   if (evento.contains("eliminar-tarea")) {
     let tarea = e.target.parentNode;
     eleminarTarea(tarea);
+    numeroTareas();
   }
   if (evento.contains("hecha")) {
     let tarea = e.target.parentNode;
     tareaHecha(tarea);
+    numeroTareas();
   }
   if (evento.contains("todas")) {
     $contenedorTareas.innerHTML = "";
@@ -108,7 +118,7 @@ document.addEventListener("click", (e) => {
       }
     }
   }
-  if (evento.contains("hechas")) {
+  if (evento.contains("lista-hechas")) {
     $contenedorTareas.innerHTML = "";
     const tareasActivas = localStorage.getItem("activas");
     for (let i of tareasActivas.split(",")) {
@@ -121,8 +131,32 @@ document.addEventListener("click", (e) => {
     $contenedorTareas.innerHTML = "";
     localStorage.setItem("activas", "");
     localStorage.setItem("listas", "");
+    numeroTareas();
   }
 });
+//reloj
+let tiempo = 0;
+setInterval(() => {
+  //Datos de la hora actual
+  const horaActual = new Date();
+  const hora = horaActual.getHours();
+  const minuto = horaActual.getMinutes();
+
+  //resto a 60 los segundos que faltan para q acabe el minuto y obtener los segundos exactos
+  const segundos = 60 - horaActual.getSeconds();
+
+  //reasignamos los segundos fuera del setInterval para poder usarlo y lo multiplicamos para tener el tiempo en milisegundos
+  tiempo = segundos * 1000;
+
+  //ajusta el horario
+  const horario = hora >= 12 ? "PM" : "AM";
+
+  //convierto la hora de un formato de 24 a 12 hr
+  const hora12 = hora % 12 || 12;
+
+  //inserta el HTML
+  $reloj.innerHTML = `${hora12} ${minuto} ${horario}`;
+}, tiempo);
 
 document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("activas") === null) {
