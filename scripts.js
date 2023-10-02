@@ -11,7 +11,10 @@ function agregarTarea(contenido, clase, checked, contexto) {
       <input class='hecha' type="checkbox" ${checked} />
       <p>${contenido}</p>
     </div>
-    <button class="eliminar-tarea">✖️</button>
+    <button class="boton">
+    <img  class="eliminar-tarea " width="16" height="16" src="https://img.icons8.com/material/24/7950F2/delete--v1.png" alt="delete--v1"/>
+      
+    </button>
   </div>
 `;
   $contenedorTareas.insertAdjacentHTML("beforeend", $templete);
@@ -66,7 +69,7 @@ function numeroTareas() {
     (elemento) => elemento !== ""
   );
   let longitud = arraySinElementosVacios.length;
-  $numeroTareas.innerText = `Tareas pendientes ${longitud}`;
+  $numeroTareas.innerText = `Tareas ${longitud}`;
 }
 //esta funcion la llamo cada vez que hago una accion ya sea para marcar eliminar o agregar
 function pintarTodas() {
@@ -96,7 +99,7 @@ document.addEventListener("click", (e) => {
   }
 
   if (evento.contains("eliminar-tarea")) {
-    let tarea = e.target.parentNode;
+    let tarea = e.target.parentNode.parentNode;
     eleminarTarea(tarea);
     numeroTareas();
   }
@@ -141,6 +144,7 @@ setInterval(() => {
   const horaActual = new Date();
   const hora = horaActual.getHours();
   const minuto = horaActual.getMinutes();
+  const minuto12 = minuto < 10 ? `0${minuto}` : minuto;
 
   //resto a 60 los segundos que faltan para q acabe el minuto y obtener los segundos exactos
   const segundos = 60 - horaActual.getSeconds();
@@ -149,13 +153,13 @@ setInterval(() => {
   tiempo = segundos * 1000;
 
   //ajusta el horario
-  const horario = hora >= 12 ? "PM" : "AM";
+  const horario = hora >= 12 ? "p.m" : "a.m";
 
   //convierto la hora de un formato de 24 a 12 hr
   const hora12 = hora % 12 || 12;
 
   //inserta el HTML
-  $reloj.innerHTML = `${hora12} ${minuto} ${horario}`;
+  $reloj.innerHTML = `${hora12}:${minuto12} ${horario}`;
 }, tiempo);
 
 document.addEventListener("DOMContentLoaded", () => {

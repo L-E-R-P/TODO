@@ -3,45 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO</title>
-    <style>
-      body {
-        background-color: black;
-        color: aliceblue;
-      }
-      .check {
-        text-decoration: line-through;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
+    <meta
+      name="description"
+      content="Crea, lista y elimina tareas alojadas en tu navegador"
+    />
+    <title>T O D O</title>
+    <!--card para twiter-->
+    <link
+      rel="icon"
+      href="https://img.icons8.com/color/48/pirates-of-the-caribbean.png"
+      type="image/x-icon"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="T O D O" />
+    <meta
+      property="og:description"
+      content="Crea, lista y elimina tareas alojadas en tu navegador"
+    />
+    <meta property="og:image" content="https://i.imgur.com/1Y7l35T.png" />
+    <meta property="og:url" content="" />
+    <!--se agrege la web al movil-->
+    <link
+      rel="apple-touch-icon"
+      href="https://img.icons8.com/color/48/pirates-of-the-caribbean.png"
+    />
+    <meta name="theme-color" content="#161722" />
   </head>
   <body>
     <header>
-      <h1>TODO</h1>
+      <h1>T O D O</h1>
       <!--Reloj dijital -->
       <p></p>
     </header>
     <main>
       <!--input de la tarea y boton para agregarla-->
       <div class="contenedor-agregar">
-        <input class="input-text" type="text" />
-        <button class="boton-agregar boton">➕</button>
+        <input class="input-text" type="text" placeholder="..." />
+        <button class="boton">
+          <img
+            class="boton-agregar"
+            width="20"
+            height="20"
+            src="https://img.icons8.com/fluency-systems-filled/48/7950F2/add-file.png"
+            alt="add-file"
+          />
+        </button>
       </div>
       <!--contenedor de las tareas agregadas dinamicamente-->
       <div class="contenedor-tareas"></div>
       <!--funciones extras-->
       <div class="funciones">
-        <p class="num-p">0</p>
+        <div class="contenedor-numero">
+          <p class="num-p">0</p>
+        </div>
         <!--ver las tareas completas, hechas y todas-->
         <div class="acciones">
           <button class="todas boton">Todas</button>
           <button class="completas boton">Completas</button>
           <button class="lista-hechas boton">Activas</button>
         </div>
-        <button class="Eliminar-todas boton">Eliminar todas</button>
+        <div class="contenedor-reseteo">
+          <button class="Eliminar-todas boton">Eliminar todas</button>
+        </div>
       </div>
     </main>
     <footer>
-      <a href="">Github</a>
+      <a href="https://github.com/L-E-R-P/TODO" target="_blank">
+        <img
+          src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/github.png"
+          alt="github"
+        />
+        Github
+      </a>
+      <div class="icons">
+        <p>icons by</p>
+        <a class="icons8" href="https://icons8.com">icons8 </a>
+      </div>
     </footer>
     <script src="scripts.js"></script>
   </body>
