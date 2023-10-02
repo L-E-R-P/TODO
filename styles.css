@@ -1,0 +1,274 @@
+:root {
+  --VeryDarkBlue: hwb(235 15% 76%);
+  --VeryDark: hsl(235, 21%, 11%);
+  --hover: hsl(236, 33%, 92%);
+  --GrayishBlue: hsl(234, 11%, 52%);
+  --Blue: hsl(233, 14%, 35%);
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+.boton {
+  border: none;
+  background-color: transparent;
+  color: var(--hover);
+  cursor: pointer;
+}
+.boton:hover {
+  transition: 0.5s;
+  color: var(--GrayishBlue);
+}
+
+body {
+  height: 97vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--hover);
+  background-color: var(--VeryDark);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/*cabezera*/
+header {
+  width: 50%;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header h1 {
+  color: #fff;
+  font-size: 1.5em;
+}
+header p {
+  color: #fff;
+  font-size: 1em;
+}
+
+/*principal*/
+
+main {
+  width: 60%;
+  margin-bottom: 0.2em;
+}
+/*agregar tareas*/
+
+.contenedor-agregar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  margin-bottom: 2.5em;
+  background-color: var(--VeryDarkBlue);
+}
+.input-text {
+  padding: 0.3em;
+  border-radius: 0.2em;
+  background-color: transparent;
+  border: thin solid var(--hover);
+  outline: none;
+  color: #fff;
+}
+.input-text:focus {
+  border: thin solid rgb(219, 213, 167);
+}
+/* Estilizar la barra de scroll */
+::-webkit-scrollbar {
+  width: 0.5em; /* Ancho de la barra de scroll */
+}
+::-webkit-scrollbar-track {
+  background-color: var(--Blue); /* Color del pulgar */
+  /* Color de fondo del riel */
+}
+
+/* Estilizar el pulgar de la barra de scroll */
+::-webkit-scrollbar-thumb {
+  background-color: var(--hover);
+  border-radius: 0.5em; /* Borde redondeado del pulgar */
+}
+/*TODAS las tareas*/
+
+.contenedor-tareas {
+  height: 15em;
+  width: 100%;
+  background-color: var(--VeryDarkBlue);
+  border-radius: 0.3em 0.3em 0 0;
+  overflow-y: scroll;
+}
+.tarea-Completa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: thin solid var(--GrayishBlue);
+}
+.p-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  width: 80%;
+}
+/* Estilizar casillas de verificación como círculos */
+input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  appearance: none;
+  -webkit-appearance: none;
+  margin-right: 10px;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo del indicador de verificación (círculo interior) */
+input[type="checkbox"]::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+/* Estilo cuando la casilla de verificación está marcada */
+input[type="checkbox"]:checked::before {
+  background-color: white;
+}
+
+.p-check p {
+  font-size: small;
+  width: 100%;
+}
+
+/*funciones extras*/
+
+.funciones {
+  background-color: var(--VeryDarkBlue);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-top: thin solid var(--GrayishBlue);
+  margin-bottom: 1em;
+  border-radius: 0 0 0.3em 0.3em;
+}
+.funciones p {
+  font-size: 0.8em;
+  margin-left: 0.4em;
+}
+.acciones {
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+}
+.contenedor-reseteo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+/*estilos del footer*/
+footer {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+footer a img {
+  width: 2em;
+  height: 2em;
+}
+
+footer a p:hover {
+  transition: 0.5s;
+  color: rgb(238, 232, 170);
+}
+.icons {
+  display: flex;
+  gap: 0.2em;
+}
+.icons8 {
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  /* Estilos para dispositivos con ancho máximo de 480px */
+  body {
+    /*lo amuneto para que el texto sea mas grande en celulares*/
+    font-size: 18px;
+    height: 100vh;
+  }
+
+  .boton img {
+    width: 2em;
+    height: 2em;
+  }
+
+  /*cabezera*/
+  header {
+    width: 80%;
+    margin-bottom: 1em;
+  }
+  /*contenido principal*/
+  main {
+    width: 90%;
+  }
+  .input-text {
+    padding: 0.5em;
+    border-radius: 0.2em;
+  }
+
+  .p-check p {
+    font-size: 1em;
+  }
+
+  .funciones {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 1em;
+    background-color: var(--VeryDar);
+  }
+  .contenedor-numero {
+    border-radius: 0 0 0 0.3em;
+    margin-right: -1px;
+  }
+  .contenedor-reseteo {
+    border-radius: 0 0 0.3em 0;
+  }
+  .contenedor-numero,
+  .contenedor-reseteo {
+    border: none;
+    background-color: var(--VeryDarkBlue);
+  }
+  .acciones {
+    grid-column: 1/-1;
+    grid-row: 2/-1;
+    background-color: var(--VeryDarkBlue);
+    border-radius: 0.3em;
+  }
+  footer {
+    flex-direction: column;
+  }
+  footer img {
+    width: 50px;
+    height: 50px;
+  }
+}
+/*clases a usar en javaScript*/
+.check {
+  text-decoration: line-through;
+}
