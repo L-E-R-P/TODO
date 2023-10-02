@@ -5,6 +5,14 @@ const $reloj = document.querySelector("header p");
 
 //crea un templete html y lo inserta en el contenedor de las tareas, el parametro contendido hace referencia el texto que se va insertar
 function agregarTarea(contenido, clase, checked, contexto) {
+  if (contexto) {
+    let cadenaFormateada = contenido.replace(/,/g, "~");
+    let tareasActivas = localStorage.getItem("activas").split(",");
+    tareasActivas.push(cadenaFormateada);
+    localStorage.setItem("activas", tareasActivas);
+  } else {
+    contenido = contenido.replace(/~/g, ",");
+  }
   const $templete = `
   <div class="tarea-Completa">
     <div class="p-check ${clase}">
@@ -19,11 +27,6 @@ function agregarTarea(contenido, clase, checked, contexto) {
 `;
   $contenedorTareas.insertAdjacentHTML("beforeend", $templete);
   //se agregan los datos al localStorage cuando se esta haciendo clik en el contexto correcto
-  if (contexto) {
-    let tareasActivas = localStorage.getItem("activas").split(",");
-    tareasActivas.push(contenido);
-    localStorage.setItem("activas", tareasActivas);
-  }
 }
 
 function eleminarTarea(tarea) {
