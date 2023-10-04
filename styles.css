@@ -176,12 +176,7 @@ input[type="checkbox"]:checked::before {
   align-items: center;
 }
 /*estilos del footer*/
-footer {
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 footer a {
   text-decoration: none;
   display: flex;
@@ -260,9 +255,7 @@ footer a p:hover {
     background-color: var(--VeryDarkBlue);
     border-radius: 0.3em;
   }
-  footer {
-    flex-direction: column;
-  }
+
   footer img {
     width: 50px;
     height: 50px;
