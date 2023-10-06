@@ -170,6 +170,10 @@ input[type="checkbox"]:checked::before {
   justify-content: space-around;
   color: #fff;
 }
+.acciones button {
+  height: 100%;
+  width: 100%;
+}
 .contenedor-reseteo {
   display: flex;
   justify-content: flex-end;
@@ -199,7 +203,53 @@ footer a p:hover {
 .icons8 {
   color: #fff;
 }
-
+/*ventana modal*/
+.ventana-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(0.3rem);
+  visibility: hidden;
+}
+.ventana-confirmacion {
+  width: 35vw;
+  height: 12em;
+  display: inherit;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: var(--VeryDarkBlue);
+  background-color: #fff;
+  border-radius: 0.5em;
+}
+.ventana-confirmacion p {
+  width: 90%;
+  text-align: center;
+}
+.botones {
+  width: 60%;
+  display: inherit;
+  justify-content: space-evenly;
+  gap: 1em;
+}
+.botones button {
+  border-radius: 0.2em;
+  width: 7em;
+  padding: 0.4em;
+  border: none;
+  color: #fff;
+}
+.confirmar {
+  background-color: rgb(7, 89, 7);
+}
+.cancelar {
+  background-color: rgb(180, 8, 8);
+}
 @media (max-width: 480px) {
   /* Estilos para dispositivos con ancho máximo de 480px */
   body {
@@ -223,6 +273,7 @@ footer a p:hover {
     width: 90%;
   }
   .input-text {
+    width: 45%;
     padding: 0.5em;
     border-radius: 0.2em;
   }
@@ -259,6 +310,10 @@ footer a p:hover {
   footer img {
     width: 50px;
     height: 50px;
+  }
+  .ventana-confirmacion {
+    width: 80vw;
+    height: 12em;
   }
 }
 /*clases a usar en javaScript*/

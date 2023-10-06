@@ -2,6 +2,7 @@ const $inputText = document.querySelector(".input-text");
 const $contenedorTareas = document.querySelector(".contenedor-tareas");
 const $numeroTareas = document.querySelector(".num-p");
 const $reloj = document.querySelector("header p");
+const $ventanaModal = document.querySelector(".ventana-modal");
 
 //crea un templete html y lo inserta en el contenedor de las tareas, el parametro contendido hace referencia el texto que se va insertar
 function agregarTarea(contenido, clase, checked, contexto) {
@@ -91,6 +92,44 @@ function pintarTodas() {
   }
 }
 
+//valida el borrado de las tareas
+function validacion(e) {
+  $ventanaModal.style.visibility = "visible";
+
+  const $templete = `
+  <div class="ventana-confirmacion">
+  <p>Esta acción eliminará todas las tareas de manera definitiva.</p>
+  <!--botones de confirmacion-->
+  <div class="botones">
+    <button class="confirmar">
+      Confirmar
+    </button>
+    <button class="cancelar">
+      Cancelar
+    </button>
+  </div>
+`;
+  $ventanaModal.innerHTML = $templete;
+  $ventanaModal.addEventListener("click", (e) => {
+    if (e.target.classList.contains("confirmar")) {
+      numeroTareas();
+      let $ventana = e.target.parentNode;
+      $contenedorTareas.innerHTML = "";
+      localStorage.setItem("activas", "");
+      localStorage.setItem("listas", "");
+      $ventana.remove();
+      $ventanaModal.style.visibility = "hidden";
+    }
+    if (e.target.classList.contains("cancelar")) {
+      let $ventana = e.target.parentNode;
+      $ventana.remove();
+
+      $ventanaModal.style.visibility = "hidden";
+    }
+  });
+}
+/*
+ */
 //delegacion de eventos para asignar la logica
 document.addEventListener("click", (e) => {
   // acorto el evento
@@ -134,10 +173,7 @@ document.addEventListener("click", (e) => {
     }
   }
   if (evento.contains("Eliminar-todas")) {
-    $contenedorTareas.innerHTML = "";
-    localStorage.setItem("activas", "");
-    localStorage.setItem("listas", "");
-    numeroTareas();
+    validacion(e);
   }
 });
 //reloj
